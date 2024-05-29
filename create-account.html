@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Tool - Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #89CFF0, #1E90FF);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="file"] {
+            display: none;
+        }
+        .profile-pic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .profile-pic img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .profile-pic button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Create an Account</h1>
+        </div>
+        <div class="form-group">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" name="newUsername">
+        </div>
+        <div class="form-group">
+            <label for="newEmail">Email:</label>
+            <input type="email" id="newEmail" name="newEmail">
+        </div>
+        <div class="form-group">
+            <label for="newPassword">Password:</label>
+            <input type="password" id="newPassword" name="newPassword">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+        </div>
+        <div class="form-group profile-pic">
+            <img id="profileImage" src="https://via.placeholder.com/100" alt="Profile Picture">
+            <input type="file" id="profilePicInput" accept="image/*">
+            <button type="button" onclick="document.getElementById('profilePicInput').click();">Upload Profile Picture</button>
+        </div>
+        <button class="btn" onclick="signUp()">Sign Up</button>
+    </div>
+
+    <script>
+        const profilePicInput = document.getElementById('profilePicInput');
+        const profileImage = document.getElementById('profileImage');
+
+        profilePicInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function signUp() {
+            const username = document.getElementById('newUsername').value;
+            const email = document.getElementById('newEmail').value;
+            const password = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            // Add sign-up logic here
+            if (password === confirmPassword) {
+                alert('Sign Up with Username: ' + username + ', Email: ' + email);
+            } else {
+                alert('Passwords do not match!');
+            }
+        }
+    </script>
+</body>
+</html>
